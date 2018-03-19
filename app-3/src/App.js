@@ -3,16 +3,49 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      message: '',
+      randomList: [
+        'Bears, ',
+        'Beets, ',
+        'Battelstar, ',
+        'Galactica, ',
+        'MICHAEL, ',
+        'Fact, ',
+        'Question, ',
+        'Tuna, ',
+        'Beasley, ',
+        'Halpert, ',
+        'Thats, ', 
+        'What, ', 
+        'She, ', 
+        'Said, '
+      ]
+    }
+  }
+
+  inputChange(val){
+    this.setState (() => {
+      return {
+        message: val
+      }
+    })
+  }
+  
+
+
+
   render() {
+    let changes =this.state.randomList.filter((e) => {
+      return e.includes(this.state.message)
+    })
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <input onChange={e => this.inputChange(e.target.value)}  type="text"/>
+      <p>{changes}</p>
       </div>
     );
   }
